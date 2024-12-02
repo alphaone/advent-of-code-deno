@@ -1,11 +1,11 @@
-export function solvePartA([col1, col2]: [number[], number[]]): number {
+export function solvePartA([col1, col2]: number[][]): number {
   col1.sort();
   col2.sort();
 
   return col1.reduce((acc, cur, i) => acc + Math.abs(cur - col2[i]), 0);
 }
 
-export function solvePartB([col1, col2]: [number[], number[]]): number {
+export function solvePartB([col1, col2]: number[][]): number {
   const freqs = col2.reduce(
     (acc, e) => acc.set(e, (acc.get(e) || 0) + 1),
     new Map()

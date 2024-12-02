@@ -8,16 +8,29 @@ export function readNumberInput(filename: string): number[] {
   return readInput(filename).map((l) => parseInt(l));
 }
 
-export function readTwoColNumberInput(filename: string): [number[], number[]] {
-  const col1: number[] = [];
-  const col2: number[] = [];
+export function readColNumberInput(filename: string): number[][] {
+  const cols: number[][] = [];
   readInput(filename).forEach((l) => {
     if (l.trim() === "") return;
-    const [a, b] = l.split(/\s+/, 2);
+    const stringNumbers = l.split(/\s+/);
+    stringNumbers.forEach((x, i) => {
+      if (!cols[i]) cols[i] = [];
 
-    col1.push(parseInt(a));
-    col2.push(parseInt(b));
+      return cols[i].push(parseInt(x));
+    });
   });
 
-  return [col1, col2];
+  return cols;
+}
+
+export function readRowNumberInput(filename: string): number[][] {
+  const cols: number[][] = [];
+  readInput(filename).forEach((l) => {
+    if (l.trim() === "") return;
+    const stringNumbers = l.split(/\s+/);
+
+    cols.push(stringNumbers.map((s) => parseInt(s)));
+  });
+
+  return cols;
 }
